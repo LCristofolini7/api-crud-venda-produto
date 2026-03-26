@@ -1,4 +1,4 @@
-package lcristofolini.api_crud_venda_produto.model;
+package lcristofolini.api_crud_venda_produto.entities;
 
 import jakarta.persistence.*;
 
@@ -13,13 +13,14 @@ public class Produtos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "descricao")
+    @Column(name = "descricao", nullable = false, length = 50)
     private String descricao;
 
-    @Column(name = "preco")
+    @Column(name = "preco", nullable = false)
     private Double preco;
 
-    @Column(name = "qtd_estoque")
+
+    @Column(name = "qtd_estoque", nullable = false)
     private Double qtd_estoque;
 
     @OneToMany(mappedBy = "produto")

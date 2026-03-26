@@ -1,4 +1,4 @@
-package lcristofolini.api_crud_venda_produto.model;
+package lcristofolini.api_crud_venda_produto.entities;
 
 import jakarta.persistence.*;
 
@@ -14,10 +14,10 @@ public class Venda {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "data")
+    @Column(name = "data", nullable = false)
     private LocalDateTime data;
 
-    @Column(name = "valor_total")
+    @Column(name = "valor_total", nullable = false)
     private Double valor_total;
 
     @OneToMany(mappedBy = "venda")
