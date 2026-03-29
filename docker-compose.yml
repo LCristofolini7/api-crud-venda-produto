@@ -1,16 +1,15 @@
-version: '3.7'
-
 services:
   postgres:
-    image: postgres:latest
+    image: postgres:17
     ports:
       - '5432:5432'
     environment:
-      - POSTGRES_USER=docker
-      - POSTGRES_PASSWORD=docker
+      - POSTGRES_USER=doc
+      - POSTGRES_PASSWORD=doc
       - POSTGRES_DB=apivenda
     volumes:
-      - apivenda_data:/var/lib/postgresql/data
+      - ./src/main/resources/data.sql:/docker-entrypoint-initdb.d/data.sql
+      - apivenda_data:/var/lib/postgresql
 
 volumes:
   apivenda_data:
