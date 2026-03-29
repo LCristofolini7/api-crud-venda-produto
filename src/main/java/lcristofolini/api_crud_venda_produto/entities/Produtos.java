@@ -9,18 +9,11 @@ import java.util.List;
 public class Produtos {
 
     @Id
-    @Column(name = "produto_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "descricao", nullable = false, length = 50)
     private String descricao;
-
-    @Column(name = "preco", nullable = false)
     private Double preco;
-
-
-    @Column(name = "qtd_estoque", nullable = false)
     private Double qtd_estoque;
 
     @OneToMany(mappedBy = "produto")

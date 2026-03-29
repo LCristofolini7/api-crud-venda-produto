@@ -7,25 +7,22 @@ import jakarta.persistence.*;
 public class ItensVenda {
 
     @Id
-    @Column(name = "itensvenda_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "quantidade")
+    @Column(name="quantidade")
     private Double quantidade;
 
-    @Column(name = "valor_unitario")
+    @Column(name="valor_unitario")
     private Double valor_unitario;
-
-    @Column(name = "valor_total")
     private Double valor_total;
 
     @ManyToOne
-    @JoinColumn(name = "venda_id")
+    @JoinColumn(name = "id_venda")
     private Venda venda;
 
     @ManyToOne
-    @JoinColumn(name = "produto_id")
+    @JoinColumn(name = "id_produto")
     private Produtos produto;
 
     public ItensVenda() {

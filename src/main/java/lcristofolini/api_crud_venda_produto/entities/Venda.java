@@ -10,14 +10,10 @@ import java.util.List;
 public class Venda {
 
     @Id
-    @Column(name = "venda_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "data", nullable = false)
     private LocalDateTime data;
-
-    @Column(name = "valor_total", nullable = false)
     private Double valor_total;
 
     @OneToMany(mappedBy = "venda")
