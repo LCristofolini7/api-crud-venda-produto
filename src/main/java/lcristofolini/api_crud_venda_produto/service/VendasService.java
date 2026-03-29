@@ -56,7 +56,7 @@ public class VendasService {
 
             Produtos produto = produtosRepo.findById(item.getProduto().getId())
                     .orElseThrow(() -> new BusinessRuleException(
-                            "Produto não encontrado: id ->" + item.getProduto().getId()));
+                            "Produto: id -> " + item.getProduto().getId() + " não encontrado!"));
 
             if (produto.getQtd_estoque() < item.getQuantidade()) {
                 throw new BusinessRuleException(

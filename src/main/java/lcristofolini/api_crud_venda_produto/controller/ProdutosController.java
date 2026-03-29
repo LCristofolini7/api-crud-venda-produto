@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -43,8 +44,8 @@ public class ProdutosController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Long id) throws BusinessRuleException {
+    public ResponseEntity<Map<String, String>> deletar(@PathVariable Long id) throws BusinessRuleException {
         produtosService.deletarProduto(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(Map.of("mensagem", "Deletado com Sucesso!"));
     }
 }
