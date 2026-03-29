@@ -10,10 +10,7 @@ public class ItensVenda {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="quantidade")
     private Double quantidade;
-
-    @Column(name="valor_unitario")
     private Double valor_unitario;
     private Double valor_total;
 
