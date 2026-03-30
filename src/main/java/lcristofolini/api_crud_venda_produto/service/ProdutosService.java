@@ -47,8 +47,12 @@ public class ProdutosService {
     }
 
     public void deletarProduto(Long id) throws BusinessRuleException {
-        if (!produtosRepo.existsById(id)) {
-            throw new BusinessRuleException("Produto não existe!");
+        Produtos produto = produtosRepo.findById(id)
+            .orElseThrow(() -> new BusinessRuleException("Produto não existe!"));
+
+
+        if (!produto.getItensVendas().isEmpty()) {
+            throw new BusinessRuleException("Não é possível deletar um produto que possui vendas vinculadas!");
         }
         produtosRepo.deleteById(id);
     }
