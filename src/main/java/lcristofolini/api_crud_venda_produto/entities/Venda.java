@@ -1,5 +1,6 @@
 package lcristofolini.api_crud_venda_produto.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -16,7 +17,8 @@ public class Venda {
     private LocalDateTime data;
     private Double valor_total;
 
-    @OneToMany(mappedBy = "venda")
+    @OneToMany(mappedBy = "venda", fetch = FetchType.EAGER)
+    @JsonManagedReference(value = "venda-itens")
     private List<ItensVenda> itensVendas;
 
     public Venda() {

@@ -1,5 +1,7 @@
 package lcristofolini.api_crud_venda_produto.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
@@ -18,7 +20,7 @@ public class Produtos {
     private Double qtd_estoque;
 
     @OneToMany(mappedBy = "produto")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonIgnore
     private List<ItensVenda> itensVendas;
 
     public Produtos() {

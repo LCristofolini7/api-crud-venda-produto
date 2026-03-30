@@ -67,6 +67,7 @@ public class VendasService {
             produto.setQtd_estoque(produto.getQtd_estoque() - item.getQuantidade());
             produtosRepo.save(produto);
 
+            item.setProduto(produto);
             item.setValor_unitario(produto.getPreco());
             item.setValor_total(produto.getPreco() * item.getQuantidade());
 
@@ -79,7 +80,8 @@ public class VendasService {
         itensVendaRepo.saveAll(itensCriados);
 
         vendaCriada.setValor_total(totalVenda);
-        return vendaRepo.save(vendaCriada);
+        return vendaRepo.findById(vendaCriada.getId())
+                .orElseThrow(() -> new BusinessRuleException("Erro ao Recuperar venda criada"));
     }
 
     public List<Venda> listarTodasVendas() {

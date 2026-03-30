@@ -1,5 +1,8 @@
 package lcristofolini.api_crud_venda_produto.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -16,10 +19,12 @@ public class ItensVenda {
 
     @ManyToOne
     @JoinColumn(name = "id_venda")
+    @JsonBackReference(value = "venda-itens")
     private Venda venda;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_produto")
+    @JsonIgnoreProperties("itensVendas")
     private Produtos produto;
 
     public ItensVenda() {
