@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -16,8 +17,8 @@ public class Produtos {
     private Long id;
 
     private String descricao;
-    private Double preco;
-    private Double qtd_estoque;
+    private BigDecimal preco;
+    private BigDecimal qtd_estoque;
 
     @OneToMany(mappedBy = "produto")
     @JsonIgnore
@@ -26,7 +27,7 @@ public class Produtos {
     public Produtos() {
     }
 
-    public Produtos(Long id, String descricao, Double preco, Double qtd_estoque) {
+    public Produtos(Long id, String descricao, BigDecimal preco, BigDecimal qtd_estoque) {
         this.id = id;
         this.descricao = descricao;
         this.preco = preco;
@@ -49,19 +50,19 @@ public class Produtos {
         this.descricao = descricao;
     }
 
-    public Double getPreco() {
+    public BigDecimal getPreco() {
         return preco;
     }
 
-    public void setPreco(Double preco) {
+    public void setPreco(BigDecimal preco) {
         this.preco = preco;
     }
 
-    public Double getQtd_estoque() {
+    public BigDecimal getQtd_estoque() {
         return qtd_estoque;
     }
 
-    public void setQtd_estoque(Double qtd_estoque) {
+    public void setQtd_estoque(BigDecimal qtd_estoque) {
         this.qtd_estoque = qtd_estoque;
     }
 

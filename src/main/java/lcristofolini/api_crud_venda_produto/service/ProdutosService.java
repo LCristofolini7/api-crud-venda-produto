@@ -6,6 +6,7 @@ import lcristofolini.api_crud_venda_produto.repository.ProdutosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,10 +60,10 @@ public class ProdutosService {
         if (produtos.getDescricao().length() > 50) {
             throw new BusinessRuleException("Descrição deve ter no máximo 50 caracteres");
         }
-        if (produtos.getPreco() == null || produtos.getPreco() <= 0) {
+        if (produtos.getPreco() == null || produtos.getPreco().compareTo(BigDecimal.ZERO) <= 0) {
             throw new BusinessRuleException("Preço deve ser maior que zero");
         }
-        if (produtos.getQtd_estoque() == null || produtos.getQtd_estoque() < 0) {
+        if (produtos.getQtd_estoque() == null || produtos.getQtd_estoque().compareTo(BigDecimal.ZERO) < 0) {
             throw new BusinessRuleException("Quantidade em Estoque não pode ser negativa");
         }
     }

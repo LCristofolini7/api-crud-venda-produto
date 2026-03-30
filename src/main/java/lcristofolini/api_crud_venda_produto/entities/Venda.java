@@ -3,6 +3,7 @@ package lcristofolini.api_crud_venda_produto.entities;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class Venda {
     private Long id;
 
     private LocalDateTime data;
-    private Double valor_total;
+    private BigDecimal valor_total;
 
     @OneToMany(mappedBy = "venda", fetch = FetchType.EAGER)
     @JsonManagedReference(value = "venda-itens")
@@ -24,7 +25,7 @@ public class Venda {
     public Venda() {
     }
 
-    public Venda(Long id, LocalDateTime data, Double valor_total) {
+    public Venda(Long id, LocalDateTime data, BigDecimal valor_total) {
         this.id = id;
         this.data = data;
         this.valor_total = valor_total;
@@ -46,11 +47,11 @@ public class Venda {
         this.data = data;
     }
 
-    public Double getValor_total() {
+    public BigDecimal getValor_total() {
         return valor_total;
     }
 
-    public void setValor_total(Double valor_total) {
+    public void setValor_total(BigDecimal valor_total) {
         this.valor_total = valor_total;
     }
 

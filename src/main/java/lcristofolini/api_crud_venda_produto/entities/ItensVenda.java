@@ -2,8 +2,9 @@ package lcristofolini.api_crud_venda_produto.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "tb_itensvenda")
@@ -13,9 +14,9 @@ public class ItensVenda {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Double quantidade;
-    private Double valor_unitario;
-    private Double valor_total;
+    private BigDecimal quantidade;
+    private BigDecimal valor_unitario;
+    private BigDecimal valor_total;
 
     @ManyToOne
     @JoinColumn(name = "id_venda")
@@ -30,7 +31,7 @@ public class ItensVenda {
     public ItensVenda() {
     }
 
-    public ItensVenda(Long id,Double quantidade, Double valor_unitario, Double valor_total) {
+    public ItensVenda(Long id,BigDecimal quantidade, BigDecimal valor_unitario, BigDecimal valor_total) {
         this.id = id;
         this.quantidade = quantidade;
         this.valor_unitario = valor_unitario;
@@ -45,27 +46,27 @@ public class ItensVenda {
         this.id = id;
     }
 
-    public Double getQuantidade() {
+    public BigDecimal getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(Double quantidade) {
+    public void setQuantidade(BigDecimal quantidade) {
         this.quantidade = quantidade;
     }
 
-    public Double getValor_unitario() {
+    public BigDecimal getValor_unitario() {
         return valor_unitario;
     }
 
-    public void setValor_unitario(Double valor_unitario) {
+    public void setValor_unitario(BigDecimal valor_unitario) {
         this.valor_unitario = valor_unitario;
     }
 
-    public Double getValor_total() {
+    public BigDecimal getValor_total() {
         return valor_total;
     }
 
-    public void setValor_total(Double valor_total) {
+    public void setValor_total(BigDecimal valor_total) {
         this.valor_total = valor_total;
     }
 

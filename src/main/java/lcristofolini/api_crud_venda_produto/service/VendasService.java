@@ -10,6 +10,7 @@ import lcristofolini.api_crud_venda_produto.repository.ProdutosRepository;
 import lcristofolini.api_crud_venda_produto.repository.VendaRepository;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,15 +43,15 @@ public class VendasService {
         }
 
         venda.setData(LocalDateTime.now());
-        venda.setValor_total(0D);
+        venda.setValor_total(BigDecimal.ZERO);
         Venda vendaCriada = vendaRepo.save(venda);
 
         List<ItensVenda> itensCriados = new ArrayList<>();
 
-        Double totalVenda = 0.0;
+        BigDecimal totalVenda = BigDecimal.ZERO;
         for (ItensVenda item : venda.getItensVendas()) {
 
-            if (item.getQuantidade() == null || item.getQuantidade() <= 0) {
+            if (item.getQuantidade() == null || item.getQuantidade().compareTo(BigDecimal.ZERO) <= 0) {
                 throw new BusinessRuleException("Quantidade do item deve ser maior do que zero.");
             }
 
@@ -58,23 +59,23 @@ public class VendasService {
                     .orElseThrow(() -> new BusinessRuleException(
                             "Produto: id -> " + item.getProduto().getId() + " não encontrado!"));
 
-            if (produto.getQtd_estoque() < item.getQuantidade()) {
+            if (produto.getQtd_estoque().compareTo(item.getQuantidade()) < 0) {
                 throw new BusinessRuleException(
                         "Estoque insuficiente para o produto: " + produto.getDescricao() +
                                 ". Disponível: " + produto.getQtd_estoque());
             }
 
-            produto.setQtd_estoque(produto.getQtd_estoque() - item.getQuantidade());
+            produto.setQtd_estoque(produto.getQtd_estoque().subtract(item.getQuantidade()));
             produtosRepo.save(produto);
 
             item.setProduto(produto);
             item.setValor_unitario(produto.getPreco());
-            item.setValor_total(produto.getPreco() * item.getQuantidade());
+            item.setValor_total(produto.getPreco().multiply(item.getQuantidade()));
 
             item.setVenda(vendaCriada);
 
             itensCriados.add(item);
-            totalVenda += item.getValor_total();
+            totalVenda = totalVenda.add(item.getValor_total());
         }
 
         itensVendaRepo.saveAll(itensCriados);
