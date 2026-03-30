@@ -28,9 +28,4 @@ public class VendasController {
     public ResponseEntity<List<Venda>> listarVendas() {
         return ResponseEntity.ok(vendasService.listarTodasVendas());
     }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Venda> listarPorId(@PathVariable Long id) throws BusinessRuleException {
-        return ResponseEntity.ok(vendasService.listarPorId(id));
-    }
 }

@@ -15,10 +15,16 @@
           "name": "Criar produto",
           "request": {
             "method": "POST",
-            "header": [],
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"descricao\": \"\",\n    \"preco\": 0.0,\n    \"qtd_estoque\": 0.0\n}",
+              "raw": "{\n    \"descricao\": \"\",\n    \"preco\": 0.0,\n    \"qtd_estoque\": 0\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -46,7 +52,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"descricao\": \"novaDescricao\",\n    \"preco\": 0.0,\n    \"qtd_estoque\": 0.0\n}",
+              "raw": "{\n    \"descricao\": \"novaDescricao\",\n    \"preco\": 0.0,\n    \"qtd_estoque\": 0\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -172,7 +178,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"itensVendas\": [\n    {\n      \"produto\": { \"id\": 0 },\n      \"quantidade\": 0\n    },\n    {\n      \"produto\": { \"id\": 0 },\n      \"quantidade\": 0\n    },\n    {\n      \"produto\": { \"id\": 0 },\n      \"quantidade\": 0\n    }\n  ]\n}",
+              "raw": "{\n  \"itensVendas\": [\n    {\n      \"produto\": { \"id\": 0 },\n      \"quantidade\": 0\n    },\n    {\n    \"produto\": { \"id\": 0 },\n      \"quantidade\": 0\n    },\n    {\n      \"produto\": { \"id\": 0 },\n      \"quantidade\": 0\n    }\n  ] \n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -198,38 +204,6 @@
           "request": {
             "method": "GET",
             "header": []
-          },
-          "response": []
-        },
-        {
-          "name": "Listar venda por ID",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:8080/vendas/id",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "vendas",
-                "id"
-              ]
-            }
           },
           "response": []
         }
